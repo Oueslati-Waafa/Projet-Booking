@@ -2,17 +2,26 @@ package com.booking.project.models;
 
 import com.booking.project.models.Address;
 import com.booking.project.models.Review;
+import org.springframework.data.annotation.Id;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 public class Hotel {
+    @Id
+    private String id;
+
+    @NotBlank
+    @Size(max = 20)
     private String name;
+
     private Double price;
     private Address address;
     private List<Review> reviewList;
 
     public Hotel() {
-        super();
+
     }
 
     public Hotel(String name, Double price, Address address, List<Review> reviewList) {
@@ -20,6 +29,14 @@ public class Hotel {
         this.price = price;
         this.address = address;
         this.reviewList = reviewList;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
