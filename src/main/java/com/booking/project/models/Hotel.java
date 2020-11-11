@@ -1,34 +1,34 @@
 package com.booking.project.models;
 
-import com.booking.project.models.Address;
-import com.booking.project.models.Review;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Set;
 
+@Document(collection = "hotels")
 public class Hotel {
     @Id
     private String id;
 
     @NotBlank
-    @Size(max = 20)
+    @Size(max = 200)
     private String name;
-
     private Double price;
-    private Address address;
-    private List<Review> reviewList;
+    private String address;
+    private Set<Review> reviewList;
 
     public Hotel() {
 
     }
 
-    public Hotel(String name, Double price, Address address, List<Review> reviewList) {
+    public Hotel(String name, Double price, String address) {
         this.name = name;
         this.price = price;
         this.address = address;
-        this.reviewList = reviewList;
+
     }
 
     public String getId() {
@@ -55,19 +55,19 @@ public class Hotel {
         this.price = price;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public List<Review> getReviewList() {
+    public Set<Review> getReviewList() {
         return reviewList;
     }
 
-    public void setReviewList(List<Review> reviewList) {
+    public void setReviewList(Set<Review> reviewList) {
         this.reviewList = reviewList;
     }
 }

@@ -1,29 +1,32 @@
 package com.booking.project.models;
 
-public class Review {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-    private String username;
+@Document(collection = "reviews")
+public class Review {
+    @Id
+    private String id;
+
     private Rating rating;
-    private boolean approved;
+
 
     public Review() {
 
     }
 
-    public Review(String username, Rating rating, boolean approved) {
-        super();
-        this.username = username;
+    public Review(Rating rating) {
         this.rating = rating;
-        this.approved = approved;
     }
 
-    public String getUsername() {
-        return username;
+    public String getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(String id) {
+        this.id = id;
     }
+
 
     public Rating getRating() {
         return rating;
@@ -33,11 +36,5 @@ public class Review {
         this.rating = rating;
     }
 
-    public boolean isApproved() {
-        return approved;
-    }
 
-    public void setApproved(boolean approved) {
-        this.approved = approved;
-    }
 }
