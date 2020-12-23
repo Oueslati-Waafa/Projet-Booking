@@ -48,12 +48,6 @@ public class HotelsController {
 
     @PostMapping("/add")
     public ResponseEntity<?> createTutorial(@Valid @RequestBody AddHotelRequest addHotelRequest) {
-        /**try {
-            Hotel _hotel = hotelsRepository.save(new Hotel(hotel.getName(), hotel.getPrice(), hotel.getAddress(),hotel.getReviewList()));
-            return new ResponseEntity<>(_hotel, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }**/
 
         if (hotelsRepository.existsByName(addHotelRequest.getName())) {
             return ResponseEntity
