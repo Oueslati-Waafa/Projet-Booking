@@ -67,8 +67,8 @@ public class ReservationController {
                     reservation.getCheckin(),
                     reservation.getCheckout(),
                     reservation.getNbrAdult(),
-                    reservation.getNbrChildren()
-
+                    reservation.getNbrChildren(),
+                    reservation.getHotels_ids()
                     ));
             return new ResponseEntity<>(_reservation, HttpStatus.CREATED);
         } catch (Exception e) {

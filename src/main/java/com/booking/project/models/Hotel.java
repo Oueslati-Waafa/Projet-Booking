@@ -1,6 +1,7 @@
 package com.booking.project.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
@@ -13,6 +14,10 @@ public class Hotel {
     @Id
     private String id;
 
+    @DBRef(lazy = true)
+    private List<Reservation> reservations_ids;
+
+
     @NotBlank
     @Size(max = 200)
     private String name;
@@ -24,11 +29,21 @@ public class Hotel {
 
     }
 
+
+
     public Hotel(String name, Double price, String address) {
         this.name = name;
         this.price = price;
         this.address = address;
 
+    }
+
+    public List<Reservation> getReservations_ids() {
+        return reservations_ids;
+    }
+
+    public void setReservations_ids(List<Reservation> reservations_ids) {
+        this.reservations_ids = reservations_ids;
     }
 
     public String getId() {

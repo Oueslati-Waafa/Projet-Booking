@@ -1,15 +1,21 @@
 package com.booking.project.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Document(collection = "reservations")
 public class Reservation {
 
     @Id
     private String id;
+
+    @DBRef(lazy = true)
+    private List<Hotel> hotels_ids;
 
     private String destination;
     private Date checkin;
@@ -20,20 +26,20 @@ public class Reservation {
 
 
 
-    public Reservation() {
-    }
+    public Reservation(String destination, Date checkin, Date checkout, String nbrAdult, String nbrChildren, List<Hotel> hotels_ids) {
 
-    public Reservation(String destination, Date checkin, Date checkout, String nbrAdult, String nbrChildren) {
-
+        this.hotels_ids = hotels_ids;
         this.destination = destination;
         this.checkin = checkin;
         this.checkout = checkout;
         this.nbrAdult = nbrAdult;
         this.nbrChildren = nbrChildren;
-
     }
 
 
+    public Reservation() {
+
+    }
 
     public String getId() {
         return id;
@@ -83,5 +89,11 @@ public class Reservation {
         this.nbrChildren = nbrChildren;
     }
 
+    public List<Hotel> getHotels_ids() {
+        return hotels_ids;
+    }
 
+    public void setHotels_ids(List<Hotel> hotels_ids) {
+        this.hotels_ids = hotels_ids;
+    }
 }
