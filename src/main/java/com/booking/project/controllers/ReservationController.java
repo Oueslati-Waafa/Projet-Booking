@@ -2,14 +2,11 @@ package com.booking.project.controllers;
 
 
         import com.booking.project.models.Reservation;
-        import com.booking.project.payload.request.AddReservationRequest;
-        import com.booking.project.payload.response.MessageResponse;
         import com.booking.project.repository.ReservationRepository;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.HttpStatus;
         import org.springframework.http.ResponseEntity;
         import org.springframework.web.bind.annotation.*;
-        import javax.validation.Valid;
         import java.util.ArrayList;
         import java.util.List;
 
@@ -42,7 +39,7 @@ public class ReservationController {
         }
     }
 
-    @PostMapping("/add")
+   /* @PostMapping("/add")
     public ResponseEntity<?> createTutorial(@Valid @RequestBody AddReservationRequest addReservationRequest) {
 
         if (reservationRepository.existsById(addReservationRequest.getDestination())) {
@@ -60,5 +57,22 @@ public class ReservationController {
         reservationRepository.save(reservation);
 
         return ResponseEntity.ok(new MessageResponse(" Reservation Added Successfully ! "));
+        }*/
+
+    @PostMapping("/add")
+    public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
+        try {
+            Reservation _reservation = reservationRepository.save(new Reservation(
+                    reservation.getDestination(),
+                    reservation.getCheckin(),
+                    reservation.getCheckout(),
+                    reservation.getNbrAdult(),
+                    reservation.getNbrChildren()
+
+                    ));
+            return new ResponseEntity<>(_reservation, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
         }

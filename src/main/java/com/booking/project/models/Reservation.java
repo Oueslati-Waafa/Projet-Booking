@@ -16,14 +16,15 @@ public class Reservation {
     private Date checkout;
     private String nbrAdult;
     private String nbrChildren;
-   // private Hotel hotelName;
+
+
+
+
+    public Reservation() {
+    }
 
     public Reservation(String destination, Date checkin, Date checkout, String nbrAdult, String nbrChildren) {
 
-    }
-
-    public Reservation(String id, String destination, Date checkin, Date checkout, String nbrAdult, String nbrChildren) {
-        this.id = id;
         this.destination = destination;
         this.checkin = checkin;
         this.checkout = checkout;
@@ -31,6 +32,8 @@ public class Reservation {
         this.nbrChildren = nbrChildren;
 
     }
+
+
 
     public String getId() {
         return id;

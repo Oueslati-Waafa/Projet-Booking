@@ -1,7 +1,7 @@
 package com.booking.project.repository;
 
 
-import com.booking.project.models.Hotel;
+
 import com.booking.project.models.Reservation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

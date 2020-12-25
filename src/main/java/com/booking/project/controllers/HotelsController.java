@@ -47,7 +47,7 @@ public class HotelsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createTutorial(@Valid @RequestBody AddHotelRequest addHotelRequest) {
+    public ResponseEntity<?> createHotel(@Valid @RequestBody AddHotelRequest addHotelRequest) {
 
         if (hotelsRepository.existsByName(addHotelRequest.getName())) {
             return ResponseEntity
@@ -103,7 +103,7 @@ public class HotelsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Hotel> getTutorialById(@PathVariable("id") String id) {
+    public ResponseEntity<Hotel> getHotelById(@PathVariable("id") String id) {
         Optional<Hotel> hotelData = hotelsRepository.findById(id);
 
         if (hotelData.isPresent()) {
